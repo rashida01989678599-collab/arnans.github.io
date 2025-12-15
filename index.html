@@ -3,101 +3,134 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arnans | Luxury Streetwear</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap" rel="stylesheet">
+  <title>ARNANS — Premium Streetwear</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    body{margin:0;font-family:Poppins,Arial;background:#0b0b0b;color:#eee}
-    header{background:#000;padding:20px;text-align:center;border-bottom:1px solid #222}
-    header h1{font-family:'Playfair Display';letter-spacing:3px;margin:0}
-    nav a{color:#ccc;margin:0 15px;text-decoration:none}
-    nav a:hover{color:#fff}
-    .hero{padding:80px 20px;text-align:center;background:radial-gradient(circle,#111,#000)}
-    .hero h2{font-family:'Playfair Display';font-size:36px}
-    .products{max-width:1200px;margin:auto;padding:40px 20px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px}
-    .card{background:#111;border-radius:12px;padding:15px;box-shadow:0 0 20px rgba(0,0,0,.6)}
-    .card img{width:100%;border-radius:10px}
-    .card h3{margin:10px 0 5px}
-    .card p{margin:5px 0;color:#bbb}
-    button{background:#c9a24d;color:#000;border:none;padding:10px;border-radius:6px;width:100%;cursor:pointer;font-weight:600}
-    button:hover{opacity:.85}
-    footer{background:#000;padding:25px;text-align:center;color:#aaa}
-    .cart{position:fixed;bottom:20px;right:20px;background:#c9a24d;color:#000;padding:14px 20px;border-radius:30px;font-weight:600}
-    .summary{max-width:500px;margin:40px auto;background:#111;padding:20px;border-radius:12px;display:none}
-    .summary h3{text-align:center;font-family:'Playfair Display'}
-    .summary p{color:#ccc}
-    .whatsapp{background:#25D366;color:#000;margin-top:10px}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Arial;background:#f5f5f5;color:#111}
+    a{text-decoration:none;color:inherit}
+
+    header{position:sticky;top:0;background:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee;z-index:10}
+    .logo{font-weight:600;letter-spacing:2px}
+    .menu{font-size:22px;cursor:pointer}
+
+    .dropdown{position:absolute;top:60px;right:18px;background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.12);display:none;overflow:hidden}
+    .dropdown a{display:block;padding:12px 18px;font-size:14px}
+    .dropdown a:hover{background:#f2f2f2}
+
+    .hero{padding:0;background:#fff}
+    .slider{position:relative;overflow:hidden}
+    .slide{display:none;padding:70px 20px;text-align:center}
+    .slide.active{display:block}
+    .slide h1{font-size:38px;font-weight:600}
+    .slide p{color:#666}
+
+    .categories{text-align:center;padding:20px}
+    .categories button{margin:5px;padding:8px 16px;border-radius:20px;border:1px solid #ddd;background:#fff;cursor:pointer}
+
+    .products{max-width:1200px;margin:auto;padding:30px 20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:25px}
+
+    .card{background:#fff;border-radius:16px;padding:12px;transition:.3s;box-shadow:0 8px 20px rgba(0,0,0,.06);position:relative}
+    .card:hover{transform:translateY(-4px)}
+    .tag{position:absolute;top:10px;left:10px;background:#111;color:#fff;font-size:12px;padding:4px 8px;border-radius:8px}
+    .card img{width:100%;border-radius:14px}
+    .card h3{font-size:15px;margin:10px 0 4px}
+    .card p{font-size:14px;color:#555}
+    .size{font-size:13px;margin:4px 0;color:#777}
+    .card button{margin-top:8px;width:100%;padding:10px;border:none;border-radius:10px;background:#111;color:#fff;cursor:pointer}
+
+    .cart{position:fixed;bottom:20px;right:20px;background:#111;color:#fff;padding:14px 20px;border-radius:30px;font-size:14px}
+
+    .summary{max-width:500px;margin:40px auto;background:#fff;padding:22px;border-radius:18px;display:none;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+    .summary h3{text-align:center}
+    .summary button{background:#25D366;color:#000;border:none;padding:12px;width:100%;border-radius:12px;margin-top:10px}
+
+    footer{text-align:center;padding:30px 20px;color:#777}
   </style>
 </head>
 <body>
+
 <header>
-  <h1>ARNANS</h1>
-  <nav>
+  <div class="logo">ARNANS</div>
+  <div class="menu" onclick="toggleMenu()">⋮</div>
+  <div class="dropdown" id="menu">
     <a href="#">Home</a>
-    <a href="#products">Products</a>
-    <a href="#order">Order</a>
-  </nav>
+    <a href="#products">Shop</a>
+    <a href="#order">Cart</a>
+    <a href="https://www.instagram.com/arnansworld.ig" target="_blank">Instagram</a>
+  </div>
 </header>
 
 <section class="hero">
-  <h2>Luxury Streetwear</h2>
-  <p>Premium quality. Bold identity.</p>
+  <div class="slider">
+    <div class="slide active"><h1>Premium Streetwear</h1><p>Minimal. Modern. Everyday wear.</p></div>
+    <div class="slide"><h1>New Drop</h1><p>Fresh styles for confident look.</p></div>
+    <div class="slide"><h1>Urban Essentials</h1><p>T-Shirts • Hoodies • Pants</p></div>
+  </div>
+</section>
+
+<section class="categories">
+  <button onclick="filter('all')">All</button>
+  <button onclick="filter('tshirt')">T-Shirts</button>
+  <button onclick="filter('hoodie')">Hoodies</button>
+  <button onclick="filter('pant')">Pants</button>
 </section>
 
 <section class="products" id="products">
-  <h2>Collection</h2>
   <div class="grid" id="productGrid"></div>
-</section>
-
-<section class="products">
-  <h2>Options</h2>
-  <p>Select Size:</p>
-  <select id="sizeSelect">
-    <option>M</option>
-    <option>L</option>
-    <option>XL</option>
-  </select>
-
-  <p>Delivery Location:</p>
-  <select id="locationSelect">
-    <option value="70">Inside Dhaka (৳70)</option>
-    <option value="130">Outside Dhaka (৳130)</option>
-  </select>
 </section>
 
 <section class="summary" id="order">
   <h3>Order Summary</h3>
   <p id="items"></p>
   <p><b>Total:</b> ৳<span id="total">0</span></p>
-  <p>🚚 Delivery charge: ৳70–130 (location based)</p>
-  <p>💳 Payment: bKash / Nagad / Binance</p>
-  <button class="whatsapp" onclick="sendWhatsApp()">Confirm Order on WhatsApp</button>
+  <p>🚚 Delivery: ৳70–130 (location based)</p>
+  <button onclick="sendWhatsApp()">Confirm on WhatsApp</button>
 </section>
 
 <footer>
-  <p>Follow us:</p>
-  <p>
-    <a href="https://www.instagram.com/arnansworld.ig?igsh=czJ6am45aGQ2MHFl" target="_blank">Instagram</a> |
-    <a href="https://www.facebook.com/profile.php?id=61565912548098" target="_blank">Facebook</a>
-  </p>
-  <p>WhatsApp Orders: 01920471947</p>
-  <p>&copy; 2025 Arnans</p>
+  <p>© 2025 ARNANS — Official Store</p>
+  <p>Official Website: https://bit.ly/arnans</p>
 </footer>
 
 <div class="cart">🛒 Cart: <span id="count">0</span></div>
 
 <script>
-  const products = Array.from({length:15},(_,i)=>({name:`Arnans Item ${i+1}`,price:800+i*50,img:'https://via.placeholder.com/300x350'}));
+  function toggleMenu(){const m=document.getElementById('menu');m.style.display=m.style.display==='block'?'none':'block';}
+
+  let slideIndex=0;
+  setInterval(()=>{
+    const slides=document.querySelectorAll('.slide');
+    slides[slideIndex].classList.remove('active');
+    slideIndex=(slideIndex+1)%slides.length;
+    slides[slideIndex].classList.add('active');
+  },3000);
+
+  const products=[
+    {name:'Arnans Classic Tee',price:900,type:'tshirt',tag:'NEW',img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80'},
+    {name:'Arnans Oversized Tee',price:1000,type:'tshirt',tag:'',img:'https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=600&q=80'},
+    {name:'Arnans Black Hoodie',price:1400,type:'hoodie',tag:'HOT',img:'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=600&q=80'},
+    {name:'Arnans Essential Hoodie',price:1350,type:'hoodie',tag:'',img:'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80'},
+    {name:'Arnans Cargo Pant',price:1600,type:'pant',tag:'NEW',img:'https://images.unsplash.com/photo-1593032465175-481ac7f4010c?auto=format&fit=crop&w=600&q=80'},
+    {name:'Arnans Slim Pant',price:1500,type:'pant',tag:'',img:'https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?auto=format&fit=crop&w=600&q=80'}
+  ];
+
   const grid=document.getElementById('productGrid');
   let cart=[];
 
-  products.forEach(p=>{
-    const d=document.createElement('div');
-    d.className='card';
-    d.innerHTML=`<img src="${p.img}"><h3>${p.name}</h3><p>৳${p.price}</p><button>Add to Cart</button>`;
-    d.querySelector('button').onclick=()=>{cart.push(p);updateCart();};
-    grid.appendChild(d);
-  });
+  function render(list){
+    grid.innerHTML='';
+    list.forEach(p=>{
+      const d=document.createElement('div');
+      d.className='card';
+      d.innerHTML=`${p.tag?`<div class='tag'>${p.tag}</div>`:''}<img src='${p.img}'><h3>${p.name}</h3><p>৳${p.price}</p><div class='size'>Sizes: M / L / XL</div><button>Add to Cart</button>`;
+      d.querySelector('button').onclick=()=>{cart.push(p);updateCart();};
+      grid.appendChild(d);
+    });
+  }
+
+  function filter(type){type==='all'?render(products):render(products.filter(p=>p.type===type));}
 
   function updateCart(){
     document.getElementById('count').innerText=cart.length;
@@ -107,9 +140,12 @@
   }
 
   function sendWhatsApp(){
-    const msg=`Order from Arnans:%0AItems: ${cart.map(i=>i.name).join(', ')}%0ATotal: ৳${cart.reduce((s,i)=>s+i.price,0)}%0ADelivery: ৳70–130 (location based)`;
+    const msg=`Order from ARNANS:%0AItems: ${cart.map(i=>i.name).join(', ')}%0ATotal: ৳${cart.reduce((s,i)=>s+i.price,0)}%0ADelivery: ৳70–130`;
     window.open(`https://wa.me/8801920471947?text=${msg}`,'_blank');
   }
+
+  render(products);
 </script>
+
 </body>
 </html>
