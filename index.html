@@ -3,219 +3,156 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ARNANS — Premium Streetwear Brand</title>
-<meta name="description" content="Arnans premium streetwear. Pants, hoodies & tees. Order via WhatsApp. bKash, Nagad, Binance supported." />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<title>ARNANS — Luxury Streetwear</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Inter,Arial;background:#fff;color:#111;scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Arial;color:#f5f5f5;background:#050505;background-image:radial-gradient(circle at 15% 12%,rgba(255,255,255,0.05),transparent 38%),radial-gradient(circle at 85% 28%,rgba(255,255,255,0.04),transparent 42%),linear-gradient(180deg,#070707 0%,#050505 55%,#040404 100%);position:relative}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;background:url('https://www.transparenttextures.com/patterns/noise.png');opacity:.035;mix-blend-mode:overlay;z-index:1}
 a{text-decoration:none;color:inherit}
-
-header{position:sticky;top:0;background:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee;z-index:10}
-.left{display:flex;align-items:center;gap:12px}
-.menu{font-size:22px;cursor:pointer}
-.logo{font-family:'Playfair Display',serif;font-size:22px;letter-spacing:1px}
-.icons span{margin-left:14px;font-size:18px;cursor:pointer}
-
-.dropdown{position:absolute;top:60px;left:14px;background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.12);display:none;overflow:hidden}
+header{position:sticky;top:0;background:rgba(0,0,0,.92);backdrop-filter:blur(10px);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1c1c1c;z-index:20}
+.left{display:flex;align-items:center;gap:14px}
+.menu{font-size:20px;cursor:pointer;padding:6px 10px;border-radius:12px;background:#0f0f0f;border:1px solid #1f1f1f;transition:.3s}.menu:hover{background:#fff;color:#000}
+.logo img{height:44px}
+.icons span{margin-left:14px;cursor:pointer;padding:6px 10px;border-radius:12px;background:#0f0f0f;border:1px solid #1f1f1f;transition:.3s}.icons span:hover{background:#fff;color:#000}
+.dropdown{position:absolute;top:60px;left:16px;background:#0e0e0e;border:1px solid #222;border-radius:14px;display:none;overflow:hidden}
 .dropdown a{display:block;padding:12px 18px;font-size:14px}
-.dropdown a:hover{background:#f2f2f2}
-
-.searchBox{display:none;padding:10px;border-bottom:1px solid #eee}
-.searchBox input{width:100%;padding:12px;border:1px solid #ccc;border-radius:10px}
-
-.hero{position:relative}
-.hero img{width:100%;height:85vh;object-fit:cover}
-.heroText{position:absolute;left:20px;bottom:40px;color:#fff;animation:fadeUp 1s}
-.heroText h2{margin:0;font-size:26px;letter-spacing:2px}
-.heroText p{margin-top:6px;font-size:14px}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-
-.const products = [
-  {
-    name: 'FW-25 Vintage Black Baggy',
-    price: 999,
-    img: 'IMAGE_LINK_1',
-    category: 'pants',
-    sizes: ['28','30','32','34','36','38'],
-    new: true,
-    soldOut: false
-  },
-  {
-    name: 'FW-25 Denim Blue Baggy',
-    price: 999,
-    img: 'IMAGE_LINK_2',
-    category: 'pants',
-    sizes: ['28','30','32','34','36','38'],
-    new: true,
-    soldOut: false
-  },
-  {
-    name: 'FW-24 Marshall Black Hoodie',
-    price: 879,
-    img: 'IMAGE_LINK_3',
-    category: 'hoodie',
-    sizes: ['M','L','XL'],
-    new: true,
-    soldOut: false
-  },
-  {
-    name: 'FW-24 Marshall White Hoodie',
-    price: 879,
-    img: 'IMAGE_LINK_4',
-    category: 'hoodie',
-    sizes: ['M','L','XL'],
-    new: true,
-    soldOut: false
-  },
-  {
-    name: 'Black 6 Pocket Baggy',
-    price: 999,
-    img: 'IMAGE_LINK_5',
-    category: 'pants',
-    sizes: ['28','30','32','34','36','38'],
-    new: false,
-    soldOut: true
-  },
-  {
-    name: 'Grey 6 Pocket Baggy',
-    price: 999,
-    img: 'IMAGE_LINK_6',
-    category: 'pants',
-    sizes: ['28','30','32','34','36','38'],
-    new: false,
-    soldOut: true
-  }
-];
-    
-
-.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:99;display:none;overflow:auto}
-.modal img{width:100%}
-.modalContent{padding:20px}
-.sizes button{margin:6px;padding:8px 14px;border:1px solid #111;background:#fff}
-.sizes button.active{background:#111;color:#fff}
-.qty{display:flex;align-items:center;gap:10px;margin-top:10px}
-.qty button{padding:6px 12px}
-.addBtn{margin-top:16px;width:100%;padding:14px;border:none;background:#111;color:#fff;font-size:15px}
-
-.cartPage{display:none;padding:20px}
-.cartItem{display:flex;justify-content:space-between;margin-bottom:12px;font-size:14px}
-.checkout{background:#25D366;color:#000;padding:14px;border:none;width:100%;font-size:16px}
-
-.trust{padding:30px 20px;background:#f7f7f7;text-align:center}
-.trust div{margin-bottom:14px;font-size:14px}
-
-.insta{padding:30px 20px;text-align:center}
-.instaGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
-.instaGrid img{width:100%}
-
-footer{background:#000;color:#fff;text-align:center;padding:30px;font-size:13px}
-
-.bottomNav{position:fixed;bottom:0;left:0;width:100%;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:8px 0}
-.bottomNav span{font-size:14px}
-
-.whatsapp{position:fixed;bottom:70px;right:16px;background:#25D366;color:#000;padding:14px;border-radius:50%;font-size:20px}
+.dropdown a:hover{background:#111}
+.searchBox{display:none;padding:14px;border-bottom:1px solid #222}
+.searchBox input{width:100%;padding:12px;border-radius:12px;border:1px solid #222;background:#0e0e0e;color:#fff}
+.hero{height:100vh;display:flex;justify-content:center;align-items:flex-start;text-align:center;position:relative;background:radial-gradient(circle at top,rgba(255,255,255,.06) 0%,#050505 45%,#000 100%);padding-top:12vh}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.85))}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.35),rgba(0,0,0,.9))}
+.hero>div{position:relative;z-index:2}
+.brandLogo{text-align:center}
+.brandLogo text{font-family:'Cinzel',serif;font-size:88px;letter-spacing:14px;fill:#fff;stroke:#fff;stroke-width:1;stroke-dasharray:900;stroke-dashoffset:900;animation:draw 2.5s ease forwards,glow 3s ease-in-out infinite alternate 2.5s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.brandTag{margin-top:14px;font-size:16px;letter-spacing:1px;opacity:.85;animation:fadeUp 2s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes glow{0%{text-shadow:0 0 0 rgba(255,255,255,.2)}100%{text-shadow:0 0 30px rgba(255,255,255,.6)}}{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.products{padding:32px 18px;margin-top:60px}
+.sectionTitle{font-family:'Playfair Display',serif;font-size:26px;margin:34px 0 18px;letter-spacing:2px;text-transform:uppercase;position:relative}
+.sectionTitle::after{content:'';display:block;width:40px;height:1px;background:#444;margin-top:10px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{background:#0e0e0e;border-radius:20px;overflow:hidden;position:relative;transition:.4s}
+.card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 30px 60px rgba(0,0,0,.6)}
+.card img{width:100%;display:block}
+.card h3{font-family:'Playfair Display',serif;font-size:15px;margin:14px 12px 6px;letter-spacing:.8px;font-weight:600;text-transform:uppercase;animation:fadeUp .8s ease}
+.price{font-size:12px;color:#aaa;margin:0 12px 18px;letter-spacing:1px}
+.badge{position:absolute;top:12px;left:12px;background:#fff;color:#000;font-size:11px;padding:4px 10px;border-radius:20px}
+.sold{background:#444;color:#aaa}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.96);display:none;z-index:99}
+.modalContent{padding:22px}
+.modal img{width:100%;border-radius:18px}
+.sizes{margin-top:14px}
+.sizes button{margin:6px;padding:8px 16px;border-radius:20px;border:1px solid #333;background:#111;color:#fff}
+.sizes button.active{background:#fff;color:#000}
+.addBtn{width:100%;margin-top:18px;padding:15px;border:none;border-radius:16px;background:linear-gradient(135deg,#222,#000);color:#fff;font-size:15px}
+.addBtn:disabled{background:#333;color:#777}
+.cart{position:fixed;inset:0;background:#050505;display:none;z-index:98;padding:20px}
+.cartItem{display:flex;justify-content:space-between;font-size:14px;margin-bottom:12px}
+.checkout{margin-top:20px;padding:15px;width:100%;border:none;border-radius:14px;background:#25D366;color:#000;font-size:16px}
+.payments{margin-top:14px;font-size:13px;color:#aaa}
+.footer{padding:40px 20px;text-align:center;font-size:13px;color:#777;border-top:1px solid #1c1c1c}
+.socials a{margin:0 10px;font-size:18px}
+.whatsapp{position:fixed;bottom:20px;right:18px;background:#25D366;color:#000;padding:14px;border-radius:50%;font-size:22px}
 </style>
 </head>
 <body>
 <header>
 <div class="left">
-<div class="menu" onclick="toggleMenu()">⋮</div>
-<div class="logo">Arnans</div>
+<div class="menu" onclick="toggleMenu()"></div>
+<div class="logo"><img src="LOGO_IMAGE_LINK"></div>
 </div>
 <div class="icons">
-<span onclick="toggleSearch()">🔍</span>
-<span onclick="openCart()">👜 (<span id="cartCount">0</span>)</span>
+<span onclick="toggleSearch()"></span>
+<span onclick="openCart()"> (<span id="cartCount">0</span>)</span>
 </div>
-<div class="dropdown" id="menuBox">
+<div class="dropdown" id="menuBox"><a href="#products">Contact</a>
 <a href="#">Home</a>
 <a href="#products">Shop</a>
 <a href="https://www.instagram.com/arnansworld.ig" target="_blank">Instagram</a>
 <a href="https://www.facebook.com/profile.php?id=61565912548098" target="_blank">Facebook</a>
 </div>
 </header>
-<div class="searchBox" id="searchBox">
-<input type="text" placeholder="Search products..." onkeyup="searchProduct(this.value)">
-</div>
-<section class="hero">
-<img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=1200&q=80">
-<div class="heroText"><h2>SHADOW BLACK</h2><p>Minimal. Modern. Everyday wear.</p></div>
+<div class="searchBox" id="searchBox"><input type="text" placeholder="Search products..." onkeyup="searchProduct(this.value)"></div>
+<section class="hero" style="justify-content:center;align-items:center;text-align:center">
+  <div>
+    <svg class="brandLogo" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg">
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">ARNANS</text>
+</svg>
+    <p class="brandTag">stay with arnans, your closet will thank you</p>
+  </div>
 </section>
 <section class="products" id="products">
-<div class="grid" id="grid"></div>
+<h2 class="sectionTitle"> NEW DROP</h2><div class="grid" id="newDrop"></div>
+<h2 class="sectionTitle"> HOODIES</h2><div class="grid" id="hoodies"></div>
+<h2 class="sectionTitle"> PANTS</h2><div class="grid" id="pants"></div>
 </section>
-<section class="trust">
-<div>✔ Premium Fabric Quality</div>
-<div>✔ Delivery All Over Bangladesh</div>
-<div>✔ Advance Payment Secure Checkout</div>
+
+<section class="products">
+<h2 class="sectionTitle">OUR STORY</h2>
+<p style="font-size:14px;line-height:1.8;opacity:.85">
+ARNANS is a premium streetwear label built for those who move differently.
+Inspired by modern silhouettes, luxury fabrics, and everyday confidence — we don’t follow trends, we define them.
+Every piece is designed to elevate your presence without saying a word.
+</p>
 </section>
-<section class="insta">
-<h3>Follow @arnansworld</h3>
-<div class="instaGrid">
-<img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=300&q=80">
-<img src="https://images.unsplash.com/photo-1593032465175-481ac7f4010c?auto=format&fit=crop&w=300&q=80">
-<img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?auto=format&fit=crop&w=300&q=80">
+
+<section class="products">
+<h2 class="sectionTitle">LOOKBOOK</h2>
+<div class="grid">
+<div class="card"><img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=80"><h3>Editorial Fit</h3></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1520975439795-8b93f2c6c56f?auto=format&fit=crop&w=900&q=80"><h3>Street Luxury</h3></div>
 </div>
 </section>
-<section class="cartPage" id="cartPage">
-<h3>Your Cart</h3>
-<div id="cartItems"></div>
-<p><b>Total:</b> ৳<span id="total">0</span></p>
-<p>Delivery: ৳70–130 (location based)</p>
-<p>Payment: bKash / Nagad / Binance</p>
-<button class="checkout" onclick="checkout()">Checkout via WhatsApp</button>
+
+<section class="products">
+<h2 class="sectionTitle">WHAT OUR CUSTOMERS SAY</h2>
+<div class="grid">
+<div class="card"><h3>★★★★★</h3><p style="padding:0 12px 16px;font-size:13px;opacity:.85">"Fabric quality is insane. Looks premium in real life."</p></div>
+<div class="card"><h3>★★★★★</h3><p style="padding:0 12px 16px;font-size:13px;opacity:.85">"Perfect fitting. People asked me where I bought it."</p></div>
+</div>
 </section>
-<div class="modal" id="modal">
-<img id="modalImg">
-<div class="modalContent">
-<h3 id="modalName"></h3>
-<p id="modalPrice"></p>
-<div class="sizes">
-<button onclick="selectSize(this)">M</button>
-<button onclick="selectSize(this)">L</button>
-<button onclick="selectSize(this)">XL</button>
+<div class="modal" id="modal"><div class="modalContent"><img id="mImg"><h3 id="mName"></h3><p id="mPrice"></p><div class="sizes" id="sizeBox"></div><button class="addBtn" id="addBtn" disabled onclick="addToCart()">Add to Cart</button><button class="addBtn" onclick="closeModal()">Close</button></div></div>
+<div class="cart" id="cart"><h3>Your Cart</h3><div id="cartItems"></div><p><b>Total:</b> ৳<span id="total">0</span></p><div class="payments">Payment: bKash • Nagad • Binance</div><button class="checkout" onclick="checkout()">Checkout via WhatsApp</button><button class="addBtn" onclick="closeCart()">Close</button></div>
+<section class="products">
+<h2 class="sectionTitle">FROM INSTAGRAM</h2>
+<div class="grid">
+<img src="https://images.unsplash.com/photo-1520975693415-35c7c7a2f33f?auto=format&fit=crop&w=600&q=80" style="width:100%;border-radius:18px">
+<img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=600&q=80" style="width:100%;border-radius:18px">
 </div>
-<div class="qty">
-<button onclick="changeQty(-1)">-</button>
-<span id="qty">1</span>
-<button onclick="changeQty(1)">+</button>
-</div>
-<button class="addBtn" onclick="addToCart()">Add to Cart</button>
-<button class="addBtn" style="background:#eee;color:#000" onclick="closeModal()">Close</button>
-</div>
-</div>
-<footer>
-<p>© 2025 ARNANS</p>
-<p>Official Website: https://bit.ly/arnans</p>
-</footer>
-<div class="bottomNav">
-<span onclick="location.href='#'">🏠</span>
-<span onclick="toggleSearch()">🔍</span>
-<span onclick="openCart()">👜</span>
-<span onclick="window.open('https://www.instagram.com/arnansworld.ig','_blank')">📸</span>
-</div>
-<a class="whatsapp" href="https://wa.me/8801920471947" target="_blank">💬</a>
+<p style="font-size:13px;opacity:.7;text-align:center;margin-top:10px">@arnansworld — premium moments</p>
+</section>
+<div class="footer">© 2025 ARNANS<div class="socials"><a href="https://www.instagram.com/arnansworld.ig" target="_blank"></a><a href="https://www.facebook.com/profile.php?id=61565912548098" target="_blank"></a></div></div>
+<a class="whatsapp" href="https://wa.me/8801920471947" target="_blank"></a>
 <script>
+// smooth reveal on scroll
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='translateY(0)'}})},{threshold:.15});
+document.querySelectorAll('.sectionTitle,.card').forEach(el=>{el.style.opacity=0;el.style.transform='translateY(30px)';observer.observe(el)});
+
 const products=[
-{name:'Straight Baggy Jeans Black',price:1500,img:'https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?auto=format&fit=crop&w=600&q=80'},
-{name:'Wisker Denim Gray',price:1200,img:'https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=600&q=80'},
-{name:'Flare Jeans Black',price:1500,img:'https://images.unsplash.com/photo-1593032465175-481ac7f4010c?auto=format&fit=crop&w=600&q=80'}];
-let cart=[],currentProduct=null,selectedSize='',qty=1;
-const grid=document.getElementById('grid');
-function render(list){grid.innerHTML='';list.forEach(p=>{const d=document.createElement('div');d.className='card';d.innerHTML=`<img src='${p.img}'><h3>${p.name}</h3><p>PANT</p><div class='price'>৳ ${p.price}</div>`;d.onclick=()=>openModal(p);grid.appendChild(d);});}
-render(products);
-function toggleMenu(){menuBox.style.display=menuBox.style.display==='block'?'none':'block';}
-function toggleSearch(){searchBox.style.display=searchBox.style.display==='block'?'none':'block';}
-function searchProduct(q){render(products.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())));}
-function openModal(p){currentProduct=p;qty=1;qtyEl.innerText=1;modal.style.display='block';modalImg.src=p.img;modalName.innerText=p.name;modalPrice.innerText='৳ '+p.price;}
-function closeModal(){modal.style.display='none';}
-function selectSize(btn){document.querySelectorAll('.sizes button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');selectedSize=btn.innerText;}
-function changeQty(n){qty=Math.max(1,qty+n);qtyEl.innerText=qty;}
-function addToCart(){if(!selectedSize){alert('Select size');return;}cart.push({...currentProduct,size:selectedSize,qty});cartCount.innerText=cart.length;closeModal();}
-function openCart(){productsEl.style.display='none';cartPage.style.display='block';renderCart();}
-function renderCart(){cartItems.innerHTML='';let total=0;cart.forEach(i=>{total+=i.price*i.qty;cartItems.innerHTML+=`<div class='cartItem'><span>${i.name} (${i.size}) x${i.qty}</span><span>৳${i.price*i.qty}</span></div>`});totalEl.innerText=total;}
-function checkout(){const msg=`Order from ARNANS%0A${cart.map(i=>i.name+' '+i.size+' x'+i.qty).join(', ')}%0ATotal: ৳${cart.reduce((s,i)=>s+i.price*i.qty,0)}%0APayment: bKash/Nagad/Binance`;window.open('https://wa.me/8801920471947?text='+msg,'_blank');}
+{name:'FW25 Vintage Black Baggy — Noir Edition',price:999,cat:'pants',badge:'NEW'},
+{name:'FW25 Denim Blue Baggy — Washed Indigo',price:999,cat:'pants',badge:'NEW'},
+{name:'FW24 Marshall Hoodie — Obsidian Black',price:879,cat:'hoodie'},
+{name:'FW24 Marshall Hoodie — Pure Ivory',price:879,cat:'hoodie'},
+{name:'Six Pocket Utility Baggy — Midnight',price:999,cat:'pants',sold:true},
+{name:'Six Pocket Utility Baggy — Ash Grey',price:999,cat:'pants',sold:true}
+];
+const sizes={hoodie:['M','L','XL'],pants:['28','30','32','34','36','38']};
+let cart=[],current=null,selected='';
+function card(p){return `<div class='card' ${p.sold?'':'onclick="openModal(\''+p.name+'\')"'}>${p.badge?`<div class='badge'>${p.badge}</div>`:''}${p.sold?`<div class='badge sold'>SOLD OUT</div>`:''}<img src='https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?auto=format&fit=crop&w=600&q=80'><h3>${p.name}</h3><p class='price'>৳ ${p.price}</p></div>`}
+function render(list=products){newDrop.innerHTML='';hoodies.innerHTML='';pants.innerHTML='';list.forEach(p=>{const el=p.cat==='hoodie'?hoodies:p.cat==='pants'?pants:newDrop;el.innerHTML+=card(p)})}
+function openModal(name){current=products.find(p=>p.name===name);selected='';addBtn.disabled=true;sizeBox.innerHTML='';mName.innerText=current.name;mPrice.innerText='৳ '+current.price;mImg.src='https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?auto=format&fit=crop&w=800&q=80';sizes[current.cat].forEach(s=>{const b=document.createElement('button');b.innerText=s;b.onclick=()=>{document.querySelectorAll('#sizeBox button').forEach(x=>x.classList.remove('active'));b.classList.add('active');selected=s;addBtn.disabled=false};sizeBox.appendChild(b)});modal.style.display='block'}
+function addToCart(){cart.push({...current,size:selected});cartCount.innerText=cart.length;closeModal()}
+function openCart(){cartItems.innerHTML='';let t=0;cart.forEach(i=>{t+=i.price;cartItems.innerHTML+=`<div class='cartItem'><span>${i.name} (${i.size})</span><span>৳${i.price}</span></div>`});total.innerText=t;cart.style.display='block'}
+function closeCart(){cart.style.display='none'}
+function checkout(){const msg=`Order from ARNANS%0A${cart.map(i=>i.name+' '+i.size).join(', ')}%0ATotal: ৳${cart.reduce((s,i)=>s+i.price,0)}%0APayment: bKash/Nagad/Binance`;window.open('https://wa.me/8801920471947?text='+msg,'_blank')}
+function toggleMenu(){menuBox.style.display=menuBox.style.display==='block'?'none':'block'}
+function toggleSearch(){searchBox.style.display=searchBox.style.display==='block'?'none':'block'}
+function searchProduct(q){render(products.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())))}
+function closeModal(){modal.style.display='none'}
+render();
 </script>
 </body>
 </html>
