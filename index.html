@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arnans | Luxury Streetwear</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;font-family:Poppins,Arial;background:#0b0b0b;color:#eee}
+    header{background:#000;padding:20px;text-align:center;border-bottom:1px solid #222}
+    header h1{font-family:'Playfair Display';letter-spacing:3px;margin:0}
+    nav a{color:#ccc;margin:0 15px;text-decoration:none}
+    nav a:hover{color:#fff}
+    .hero{padding:80px 20px;text-align:center;background:radial-gradient(circle,#111,#000)}
+    .hero h2{font-family:'Playfair Display';font-size:36px}
+    .products{max-width:1200px;margin:auto;padding:40px 20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px}
+    .card{background:#111;border-radius:12px;padding:15px;box-shadow:0 0 20px rgba(0,0,0,.6)}
+    .card img{width:100%;border-radius:10px}
+    .card h3{margin:10px 0 5px}
+    .card p{margin:5px 0;color:#bbb}
+    button{background:#c9a24d;color:#000;border:none;padding:10px;border-radius:6px;width:100%;cursor:pointer;font-weight:600}
+    button:hover{opacity:.85}
+    footer{background:#000;padding:25px;text-align:center;color:#aaa}
+    .cart{position:fixed;bottom:20px;right:20px;background:#c9a24d;color:#000;padding:14px 20px;border-radius:30px;font-weight:600}
+    .summary{max-width:500px;margin:40px auto;background:#111;padding:20px;border-radius:12px;display:none}
+    .summary h3{text-align:center;font-family:'Playfair Display'}
+    .summary p{color:#ccc}
+    .whatsapp{background:#25D366;color:#000;margin-top:10px}
+  </style>
+</head>
+<body>
+<header>
+  <h1>ARNANS</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#products">Products</a>
+    <a href="#order">Order</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Luxury Streetwear</h2>
+  <p>Premium quality. Bold identity.</p>
+</section>
+
+<section class="products" id="products">
+  <h2>Collection</h2>
+  <div class="grid" id="productGrid"></div>
+</section>
+
+<section class="products">
+  <h2>Options</h2>
+  <p>Select Size:</p>
+  <select id="sizeSelect">
+    <option>M</option>
+    <option>L</option>
+    <option>XL</option>
+  </select>
+
+  <p>Delivery Location:</p>
+  <select id="locationSelect">
+    <option value="70">Inside Dhaka (৳70)</option>
+    <option value="130">Outside Dhaka (৳130)</option>
+  </select>
+</section>
+
+<section class="summary" id="order">
+  <h3>Order Summary</h3>
+  <p id="items"></p>
+  <p><b>Total:</b> ৳<span id="total">0</span></p>
+  <p>🚚 Delivery charge: ৳70–130 (location based)</p>
+  <p>💳 Payment: bKash / Nagad / Binance</p>
+  <button class="whatsapp" onclick="sendWhatsApp()">Confirm Order on WhatsApp</button>
+</section>
+
+<footer>
+  <p>Follow us:</p>
+  <p>
+    <a href="https://www.instagram.com/arnansworld.ig?igsh=czJ6am45aGQ2MHFl" target="_blank">Instagram</a> |
+    <a href="https://www.facebook.com/profile.php?id=61565912548098" target="_blank">Facebook</a>
+  </p>
+  <p>WhatsApp Orders: 01920471947</p>
+  <p>&copy; 2025 Arnans</p>
+</footer>
+
+<div class="cart">🛒 Cart: <span id="count">0</span></div>
+
+<script>
+  const products = Array.from({length:15},(_,i)=>({name:`Arnans Item ${i+1}`,price:800+i*50,img:'https://via.placeholder.com/300x350'}));
+  const grid=document.getElementById('productGrid');
+  let cart=[];
+
+  products.forEach(p=>{
+    const d=document.createElement('div');
+    d.className='card';
+    d.innerHTML=`<img src="${p.img}"><h3>${p.name}</h3><p>৳${p.price}</p><button>Add to Cart</button>`;
+    d.querySelector('button').onclick=()=>{cart.push(p);updateCart();};
+    grid.appendChild(d);
+  });
+
+  function updateCart(){
+    document.getElementById('count').innerText=cart.length;
+    document.getElementById('order').style.display='block';
+    document.getElementById('items').innerText=cart.map(i=>i.name).join(', ');
+    document.getElementById('total').innerText=cart.reduce((s,i)=>s+i.price,0);
+  }
+
+  function sendWhatsApp(){
+    const msg=`Order from Arnans:%0AItems: ${cart.map(i=>i.name).join(', ')}%0ATotal: ৳${cart.reduce((s,i)=>s+i.price,0)}%0ADelivery: ৳70–130 (location based)`;
+    window.open(`https://wa.me/8801920471947?text=${msg}`,'_blank');
+  }
+</script>
+</body>
+</html>
