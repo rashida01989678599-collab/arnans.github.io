@@ -3,54 +3,117 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ARNANS — Premium Streetwear</title>
+<title>ARNANS — Premium Streetwear Brand</title>
+<meta name="description" content="Arnans premium streetwear. Pants, hoodies & tees. Order via WhatsApp. bKash, Nagad, Binance supported." />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Inter,Arial;background:#fff;color:#111}
+body{margin:0;font-family:Inter,Arial;background:#fff;color:#111;scroll-behavior:smooth}
 a{text-decoration:none;color:inherit}
+
 header{position:sticky;top:0;background:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee;z-index:10}
-.logo{font-family:'Playfair Display',serif;font-size:22px}
-.hero img{width:100%}
-.heroText{position:absolute;left:16px;bottom:24px;color:#fff}
-.products{padding:20px}
+.left{display:flex;align-items:center;gap:12px}
+.menu{font-size:22px;cursor:pointer}
+.logo{font-family:'Playfair Display',serif;font-size:22px;letter-spacing:1px}
+.icons span{margin-left:14px;font-size:18px;cursor:pointer}
+
+.dropdown{position:absolute;top:60px;left:14px;background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.12);display:none;overflow:hidden}
+.dropdown a{display:block;padding:12px 18px;font-size:14px}
+.dropdown a:hover{background:#f2f2f2}
+
+.searchBox{display:none;padding:10px;border-bottom:1px solid #eee}
+.searchBox input{width:100%;padding:12px;border:1px solid #ccc;border-radius:10px}
+
+.hero{position:relative}
+.hero img{width:100%;height:85vh;object-fit:cover}
+.heroText{position:absolute;left:20px;bottom:40px;color:#fff;animation:fadeUp 1s}
+.heroText h2{margin:0;font-size:26px;letter-spacing:2px}
+.heroText p{margin-top:6px;font-size:14px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+.products{padding:22px}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.card{text-align:center;cursor:pointer}
-.card img{width:100%}
+.card{text-align:center;cursor:pointer;transition:.3s}
+.card img{width:100%;transition:.4s}
+.card:hover img{transform:scale(1.05)}
 .card h3{font-size:14px;margin:8px 0 2px}
-.card p{font-size:13px;margin:0}
+.card p{font-size:12px;margin:0;color:#666}
 .price{font-weight:500;margin-top:4px}
-/* modal */
+
 .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:99;display:none;overflow:auto}
 .modal img{width:100%}
 .modalContent{padding:20px}
 .sizes button{margin:6px;padding:8px 14px;border:1px solid #111;background:#fff}
 .sizes button.active{background:#111;color:#fff}
+.qty{display:flex;align-items:center;gap:10px;margin-top:10px}
+.qty button{padding:6px 12px}
 .addBtn{margin-top:16px;width:100%;padding:14px;border:none;background:#111;color:#fff;font-size:15px}
-/* cart */
+
 .cartPage{display:none;padding:20px}
-.cartItem{display:flex;justify-content:space-between;margin-bottom:12px}
+.cartItem{display:flex;justify-content:space-between;margin-bottom:12px;font-size:14px}
 .checkout{background:#25D366;color:#000;padding:14px;border:none;width:100%;font-size:16px}
-footer{background:#000;color:#fff;text-align:center;padding:30px;margin-top:40px}
+
+.trust{padding:30px 20px;background:#f7f7f7;text-align:center}
+.trust div{margin-bottom:14px;font-size:14px}
+
+.insta{padding:30px 20px;text-align:center}
+.instaGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
+.instaGrid img{width:100%}
+
+footer{background:#000;color:#fff;text-align:center;padding:30px;font-size:13px}
+
+.bottomNav{position:fixed;bottom:0;left:0;width:100%;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:8px 0}
+.bottomNav span{font-size:14px}
+
+.whatsapp{position:fixed;bottom:70px;right:16px;background:#25D366;color:#000;padding:14px;border-radius:50%;font-size:20px}
 </style>
 </head>
 <body>
 <header>
+<div class="left">
+<div class="menu" onclick="toggleMenu()">⋮</div>
 <div class="logo">Arnans</div>
-<div onclick="openCart()">👜 (<span id="cartCount">0</span>)</div>
+</div>
+<div class="icons">
+<span onclick="toggleSearch()">🔍</span>
+<span onclick="openCart()">👜 (<span id="cartCount">0</span>)</span>
+</div>
+<div class="dropdown" id="menuBox">
+<a href="#">Home</a>
+<a href="#products">Shop</a>
+<a href="https://www.instagram.com/arnansworld.ig" target="_blank">Instagram</a>
+<a href="https://www.facebook.com/profile.php?id=61565912548098" target="_blank">Facebook</a>
+</div>
 </header>
-<section class="hero" style="position:relative">
+<div class="searchBox" id="searchBox">
+<input type="text" placeholder="Search products..." onkeyup="searchProduct(this.value)">
+</div>
+<section class="hero">
 <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=1200&q=80">
-<div class="heroText"><h2>SHADOW BLACK</h2><p>All black. All day.</p></div>
+<div class="heroText"><h2>SHADOW BLACK</h2><p>Minimal. Modern. Everyday wear.</p></div>
 </section>
 <section class="products" id="products">
 <div class="grid" id="grid"></div>
+</section>
+<section class="trust">
+<div>✔ Premium Fabric Quality</div>
+<div>✔ Delivery All Over Bangladesh</div>
+<div>✔ Advance Payment Secure Checkout</div>
+</section>
+<section class="insta">
+<h3>Follow @arnansworld</h3>
+<div class="instaGrid">
+<img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=300&q=80">
+<img src="https://images.unsplash.com/photo-1593032465175-481ac7f4010c?auto=format&fit=crop&w=300&q=80">
+<img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?auto=format&fit=crop&w=300&q=80">
+</div>
 </section>
 <section class="cartPage" id="cartPage">
 <h3>Your Cart</h3>
 <div id="cartItems"></div>
 <p><b>Total:</b> ৳<span id="total">0</span></p>
-<p>Advance delivery charge required</p>
+<p>Delivery: ৳70–130 (location based)</p>
 <p>Payment: bKash / Nagad / Binance</p>
 <button class="checkout" onclick="checkout()">Checkout via WhatsApp</button>
 </section>
@@ -64,31 +127,46 @@ footer{background:#000;color:#fff;text-align:center;padding:30px;margin-top:40px
 <button onclick="selectSize(this)">L</button>
 <button onclick="selectSize(this)">XL</button>
 </div>
+<div class="qty">
+<button onclick="changeQty(-1)">-</button>
+<span id="qty">1</span>
+<button onclick="changeQty(1)">+</button>
+</div>
 <button class="addBtn" onclick="addToCart()">Add to Cart</button>
 <button class="addBtn" style="background:#eee;color:#000" onclick="closeModal()">Close</button>
 </div>
 </div>
 <footer>
-<a href="https://www.instagram.com/arnansworld.ig" target="_blank">Instagram</a> |
-<a href="https://www.facebook.com/profile.php?id=61565912548098" target="_blank">Facebook</a>
+<p>© 2025 ARNANS</p>
 <p>Official Website: https://bit.ly/arnans</p>
 </footer>
+<div class="bottomNav">
+<span onclick="location.href='#'">🏠</span>
+<span onclick="toggleSearch()">🔍</span>
+<span onclick="openCart()">👜</span>
+<span onclick="window.open('https://www.instagram.com/arnansworld.ig','_blank')">📸</span>
+</div>
+<a class="whatsapp" href="https://wa.me/8801920471947" target="_blank">💬</a>
 <script>
 const products=[
 {name:'Straight Baggy Jeans Black',price:1500,img:'https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?auto=format&fit=crop&w=600&q=80'},
 {name:'Wisker Denim Gray',price:1200,img:'https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=600&q=80'},
 {name:'Flare Jeans Black',price:1500,img:'https://images.unsplash.com/photo-1593032465175-481ac7f4010c?auto=format&fit=crop&w=600&q=80'}];
-let cart=[],currentProduct=null,selectedSize='';
+let cart=[],currentProduct=null,selectedSize='',qty=1;
 const grid=document.getElementById('grid');
-products.forEach(p=>{const d=document.createElement('div');d.className='card';d.innerHTML=`<img src='${p.img}'><h3>${p.name}</h3><p>PANT</p><div class='price'>৳ ${p.price}</div>`;d.onclick=()=>openModal(p);grid.appendChild(d);});
-function openModal(p){currentProduct=p;document.getElementById('modal').style.display='block';document.getElementById('modalImg').src=p.img;document.getElementById('modalName').innerText=p.name;document.getElementById('modalPrice').innerText='৳ '+p.price;}
-function closeModal(){document.getElementById('modal').style.display='none';}
+function render(list){grid.innerHTML='';list.forEach(p=>{const d=document.createElement('div');d.className='card';d.innerHTML=`<img src='${p.img}'><h3>${p.name}</h3><p>PANT</p><div class='price'>৳ ${p.price}</div>`;d.onclick=()=>openModal(p);grid.appendChild(d);});}
+render(products);
+function toggleMenu(){menuBox.style.display=menuBox.style.display==='block'?'none':'block';}
+function toggleSearch(){searchBox.style.display=searchBox.style.display==='block'?'none':'block';}
+function searchProduct(q){render(products.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())));}
+function openModal(p){currentProduct=p;qty=1;qtyEl.innerText=1;modal.style.display='block';modalImg.src=p.img;modalName.innerText=p.name;modalPrice.innerText='৳ '+p.price;}
+function closeModal(){modal.style.display='none';}
 function selectSize(btn){document.querySelectorAll('.sizes button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');selectedSize=btn.innerText;}
-function addToCart(){if(!selectedSize){alert('Select size');return;}cart.push({...currentProduct,size:selectedSize});updateCart();closeModal();}
-function updateCart(){document.getElementById('cartCount').innerText=cart.length;}
-function openCart(){document.getElementById('products').style.display='none';document.getElementById('cartPage').style.display='block';renderCart();}
-function renderCart(){const c=document.getElementById('cartItems');c.innerHTML='';let total=0;cart.forEach(i=>{total+=i.price;c.innerHTML+=`<div class='cartItem'><span>${i.name} (${i.size})</span><span>৳${i.price}</span></div>`});document.getElementById('total').innerText=total;}
-function checkout(){const msg=`Order from ARNANS%0A${cart.map(i=>i.name+' '+i.size).join(', ')}%0ATotal: ৳${cart.reduce((s,i)=>s+i.price,0)}%0APayment: bKash/Nagad/Binance`;window.open('https://wa.me/8801920471947?text='+msg,'_blank');}
+function changeQty(n){qty=Math.max(1,qty+n);qtyEl.innerText=qty;}
+function addToCart(){if(!selectedSize){alert('Select size');return;}cart.push({...currentProduct,size:selectedSize,qty});cartCount.innerText=cart.length;closeModal();}
+function openCart(){productsEl.style.display='none';cartPage.style.display='block';renderCart();}
+function renderCart(){cartItems.innerHTML='';let total=0;cart.forEach(i=>{total+=i.price*i.qty;cartItems.innerHTML+=`<div class='cartItem'><span>${i.name} (${i.size}) x${i.qty}</span><span>৳${i.price*i.qty}</span></div>`});totalEl.innerText=total;}
+function checkout(){const msg=`Order from ARNANS%0A${cart.map(i=>i.name+' '+i.size+' x'+i.qty).join(', ')}%0ATotal: ৳${cart.reduce((s,i)=>s+i.price*i.qty,0)}%0APayment: bKash/Nagad/Binance`;window.open('https://wa.me/8801920471947?text='+msg,'_blank');}
 </script>
 </body>
 </html>
